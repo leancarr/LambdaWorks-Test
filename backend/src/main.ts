@@ -1,8 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+//async function bootstrap() {
+//  const app = await NestFactory.create(AppModule);
+//  await app.listen(process.env.PORT ?? 3000);
+//}
+//bootstrap();
+
+// main.ts en NestJS
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+  app.enableCors(); // habilita CORS
+  await app.listen(4000); // cambia a 4000
 }
 bootstrap();
