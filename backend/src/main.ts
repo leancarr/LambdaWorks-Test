@@ -6,10 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin: [
-      'http://localhost:3000', 
-      'https://lambda-works-test-3kzpdy0y5-leancarrs-projects.vercel.app'
-    ],
+    origin: true, 
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
