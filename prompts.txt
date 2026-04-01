@@ -1,0 +1,96 @@
+# 📝 Registro de Prompts - LambdaWorks-Test
+Geminis
+Este archivo contiene los prompts clave utilizados para el desarrollo, depuración y despliegue de la aplicación.
+
+## 1. Configuración del Backend (NestJS + Prisma)
+"Necesito configurar un backend modular con NestJS que use Prisma ORM para gestionar una tabla de contactos en PostgreSQL. Los campos deben ser: id, nombre, apellido, email y teléfono."
+
+## 2. Resolución de Error de Conexión (SSL en Render)
+"Mi aplicación en Render tira el error 'P1010: User was denied access / SSL/TLS required' al intentar conectar con la base de datos de PostgreSQL. ¿Cómo ajusto la DATABASE_URL en Prisma para forzar la conexión segura?"
+
+## 3. Configuración de CORS para Producción
+"El frontend en Vercel no puede obtener datos del backend en Render por políticas de CORS. ¿Cómo configuro el main.ts en NestJS para permitir peticiones desde mi dominio de Vercel de forma segura?"
+
+## 4. Sincronización de Base de Datos en Local
+"Tengo problemas con 'prisma migrate dev' en mi entorno local. ¿Qué diferencia hay con 'prisma db push' y cuándo debería usar cada uno para agilizar el desarrollo?"
+
+## 5. Estructura de Proyecto Monorepo
+"¿Cómo organizar un repositorio que contiene una carpeta /frontend (Next.js) y una carpeta /backend (NestJS) para que los despliegues en Vercel y Render no entren en conflicto?"
+
+Claude
+
+# prompts.txt — Registro de prompts utilizados durante el desarrollo
+
+## CONFIGURACIÓN INICIAL
+
+"Explicame paso a paso cómo arrancar un proyecto con NestJS + Next.js + Prisma + PostgreSQL en Docker en Windows desde cero, teniendo solo Git instalado."
+
+"¿Qué es Docker y para qué lo usamos en este proyecto? ¿Necesito instalar PostgreSQL por separado?"
+
+"Explicame la diferencia entre npm install prisma y npm install @prisma/client"
+
+---
+
+## BACKEND — NestJS + Prisma
+
+"Creá el archivo docker-compose.yml para levantar una base de datos PostgreSQL con usuario test, contraseña test y base de datos test en el puerto 5432"
+
+"Inicializá Prisma en un proyecto NestJS e instalá las dependencias necesarias para Prisma v7 con PostgreSQL"
+
+"Creá el modelo Contact en schema.prisma con los campos id, nombre, email único y createdAt con fecha automática"
+
+"Configurá el prisma.config.ts para Prisma v7 con la URL de la base de datos desde una variable de entorno"
+
+"Prisma v7 genera el cliente en formato ES Module pero NestJS usa CommonJS. ¿Cómo soluciono el error 'exports is not defined in ES module scope'?"
+
+"Generá el módulo, controller y service de contacts en NestJS con nest generate"
+
+"Escribí el ContactsService con los métodos findAll, create, remove y update usando PrismaClient con el adapter de PostgreSQL"
+
+"Escribí el ContactsController con los endpoints GET, POST, DELETE y PUT para /contacts"
+
+"Configurá el main.ts de NestJS para habilitar CORS, usar ValidationPipe global y escuchar en el puerto 4000"
+
+"Creá el CreateContactDto con class-validator para validar que el nombre solo contenga letras, tenga al menos 2 caracteres y que el email tenga formato válido"
+
+"¿Por qué el tsconfig.json generado por NestJS tiene 'module': 'nodenext' y por qué hay que cambiarlo a 'commonjs'?"
+
+---
+
+## FRONTEND — Next.js + React
+
+"Creá un proyecto Next.js con TypeScript, ESLint y Tailwind CSS"
+
+"Creá el componente ContactsForm en React con validaciones de frontend: nombre obligatorio, solo letras, mínimo 2 caracteres, email con formato válido"
+
+"Creá el componente ContactsList que traiga los contactos del backend, los muestre en una tabla con grid de Tailwind y tenga botones de editar y eliminar"
+
+"Agregá un buscador de contactos que filtre por nombre o email del lado del cliente sin hacer requests al servidor"
+
+"Agregá la funcionalidad de edición inline en la tabla de contactos con validaciones"
+
+"Hacé el diseño responsive para que en mobile el formulario y la tabla se apilen verticalmente"
+
+"Reemplazá todas las URLs hardcodeadas de localhost:4000 por la variable de entorno NEXT_PUBLIC_API_URL"
+
+---
+
+## DEPLOY
+
+"¿Cómo deployar el backend de NestJS en Render con una base de datos PostgreSQL gratuita?"
+
+"¿Cómo deployar el frontend de Next.js en Vercel conectado al backend de Render?"
+
+"¿Qué Build Command y Start Command usar en Render para un proyecto NestJS con Prisma?"
+
+---
+
+## DEBUGGING
+
+"El comando 'npx prisma migrate dev' devuelve 'Already in sync'. ¿Cómo fuerzo la creación de la tabla?"
+
+"Prisma v7 lanza el error 'PrismaClient needs to be constructed with a non-empty valid PrismaClientOptions'. ¿Cómo soluciono esto?"
+
+"NestJS lanza 'exports is not defined in ES module scope' al importar el cliente generado por Prisma. ¿Cómo soluciono la incompatibilidad entre ES Modules y CommonJS?"
+
+"El deploy en Render falla con 'Exited with status 1'. ¿Cuál es el Start Command correcto para NestJS?"

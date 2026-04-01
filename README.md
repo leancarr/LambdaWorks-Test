@@ -30,7 +30,7 @@ Aplicación Full-Stack para la gestión de contactos, construida con **Next.js 1
 2. Instala las dependencias: `npm install`
 3. Crea un archivo `.env` basado en el siguiente ejemplo:
    `env`
-   DATABASE_URL="postgresql://test:test@localhost:5432/test?schema=public" 
+   DATABASE_URL="postgresql://lambdaworks_db_user:5k4rW49SOpXHb2YEkChSh8yvP6tXHWcN@dpg-d7685a0ule4c73eos1mg-a.ohio-postgres.render.com/lambdaworks_db?ssl=true" 
    PORT=4000
    **Nota importante:** Para desarrollo local, se debe utilizar la URL de conexión de la instancia de PostgreSQL configurada (ej. Docker o Localhost).
 
