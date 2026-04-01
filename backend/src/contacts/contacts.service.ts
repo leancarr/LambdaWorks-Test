@@ -23,4 +23,11 @@ export class ContactsService {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     return await prisma.contact.delete({ where: { id } });
   }
+
+  async update(id: number, data: { nombre: string; email: string }) {
+    return await prisma.contact.update({
+      where: { id },
+      data,
+    });
+  }
 }

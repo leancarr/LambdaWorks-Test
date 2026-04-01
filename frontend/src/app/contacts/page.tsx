@@ -12,12 +12,14 @@ export default function ContactsPage() {
   };
 
   return (
-    <div className="flex gap-8 p-8">
-      <div className="w-1/3">
-        <ContactsForm onContactAdded={handleContactAdded} />
-      </div>
-      <div className="w-2/3">
-        <ContactsList reload={reload} />
+    <div className="min-h-screen bg-gray-100 p-4 md:p-8">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
+        <div className="w-full md:w-1/3">
+          <ContactsForm onContactAdded={handleContactAdded} />
+        </div>
+        <div className="w-full md:w-2/3">
+          <ContactsList reload={reload} />
+        </div>
       </div>
     </div>
   );

@@ -8,9 +8,19 @@ import { AppModule } from './app.module';
 //bootstrap();
 
 // main.ts en NestJS
+//async function bootstrap() {
+//  const app = await NestFactory.create(AppModule);
+//  app.enableCors(); // habilita CORS
+//  await app.listen(4000); // cambia a 4000
+//}
+//bootstrap();
+
+import { ValidationPipe } from '@nestjs/common';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors(); // habilita CORS
-  await app.listen(4000); // cambia a 4000
+  app.useGlobalPipes(new ValidationPipe()); // agregá esta línea
+  app.enableCors();
+  await app.listen(4000);
 }
 bootstrap();
