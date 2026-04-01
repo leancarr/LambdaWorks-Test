@@ -10,7 +10,7 @@ export default function ContactsList({ reload }: { reload: boolean }) {
   const [errores, setErrores] = useState<{ nombre?: string; email?: string }>({});
 
   const fetchContacts = async () => {
-    const res = await fetch('http://localhost:4000/contacts');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts`);
     const data = await res.json();
     setContactos(data);
   };
@@ -43,7 +43,7 @@ export default function ContactsList({ reload }: { reload: boolean }) {
   };
 
   const handleDelete = async (id: number) => {
-    await fetch(`http://localhost:4000/contacts/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts/${id}`, {
       method: 'DELETE',
     });
     fetchContacts();
@@ -59,7 +59,7 @@ export default function ContactsList({ reload }: { reload: boolean }) {
   const handleUpdate = async (id: number) => {
     if (!validar()) return;
 
-    await fetch(`http://localhost:4000/contacts/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre: editNombre, email: editEmail }),

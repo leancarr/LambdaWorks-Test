@@ -32,7 +32,7 @@ export default function ContactsForm({ onContactAdded }: { onContactAdded: () =>
 
     if (!validar()) return;
 
-    const res = await fetch('http://localhost:4000/contacts', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre, email }),
